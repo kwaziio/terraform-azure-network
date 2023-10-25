@@ -1,6 +1,6 @@
-###########################################################################
-# Creates Network Security Group [Stateless Firewall] for Private Subnets #
-###########################################################################
+#########################################################################
+# Creates Network Security Group [Network Firewall] for Private Subnets #
+#########################################################################
 
 resource "azurerm_network_security_group" "private" {
   count               = length(var.subnets_private) > 0 ? 1 : 0
@@ -39,9 +39,9 @@ resource "azurerm_network_security_rule" "private_ingress_ipv4" {
   source_port_range            = "*"
 }
 
-##########################################################################
-# Creates Network Security Group [Stateless Firewall] for Public Subnets #
-##########################################################################
+########################################################################
+# Creates Network Security Group [Network Firewall] for Public Subnets #
+########################################################################
 
 resource "azurerm_network_security_group" "public" {
   count               = length(var.subnets_public) > 0 ? 1 : 0

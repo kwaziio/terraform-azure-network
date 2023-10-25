@@ -11,8 +11,12 @@ resource "azurerm_resource_group" "main" {
 # Creates Azure Virtual Network #
 #################################
 
+locals {
+  network_cidrs = concat([var.network_primary_cidr_block], var.network_secondary_cidr_blocks)
+}
+
 resource "azurerm_virtual_network" "main" {
-  address_space       = concat([var.network_primary_cidr_block], var.network_secondary_cidr_blocks)
+  address_space       = local.network_cidrs
   location            = azurerm_resource_group.main.location
   name                = var.network_tags_name
   resource_group_name = azurerm_resource_group.main.name

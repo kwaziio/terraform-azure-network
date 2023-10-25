@@ -17,6 +17,12 @@ variable "network_enable_ipv6" {
   type        = bool
 }
 
+variable "network_enable_nat" {
+  default     = true
+  description = "'true' if Network Address Translation (NAT) Gateways Should be Created"
+  type        = bool
+}
+
 variable "network_primary_cidr_block" {
   description = "Primary IPv4 CIDR Block to Associate w/ the Created Network"
   type        = string
@@ -31,6 +37,22 @@ variable "network_secondary_cidr_blocks" {
   default     = []
   description = "List of Secondary IPv4 CIDR Blocks to Associate w/ the Created Network"
   type        = list(string)
+}
+
+variable "network_service_endpoints" {
+  description = "List of Azure Service Endpoints to Enable for Each Subnet"
+  type        = list(string)
+
+  default = [
+    "Microsoft.AzureActiveDirectory",
+    "Microsoft.AzureCosmosDB",
+    "Microsoft.EventHub",
+    "Microsoft.KeyVault",
+    "Microsoft.ServiceBus",
+    "Microsoft.Sql",
+    "Microsoft.Storage",
+    "Microsoft.Web",
+  ]
 }
 
 variable "network_tags_name" {
