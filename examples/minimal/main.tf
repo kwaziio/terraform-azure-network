@@ -26,7 +26,7 @@ provider "azurerm" {
 # Example Terraform Azure Network Module Usage #
 ################################################
 
-module "terraform_aws_network" {
+module "terraform_azure_network" {
   source = "../../"
 
   azure_region               = "East US"
